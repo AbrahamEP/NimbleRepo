@@ -47,13 +47,57 @@ class APINimbleService {
             
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            guard let loginResponseData = try? decoder.decode(LoginResponseData.self, from: data) else {
-                
-                completion(.failure(.apiError("Error decoding data")))
+            
+            do {
+                let responseData = try decoder.decode(LoginResponseData.self, from: data)
+                completion(.success(responseData.data))
+            } catch let err {
+                completion(.failure(.apiError("Error decoding data: \(err)")))
+            }
+        }
+    }
+    
+    func getSurveyList(completion: @escaping (Result<[SurveyListResponse], NetworkError>) -> Void) {
+        var urlComponents = network.urlComponents
+        urlComponents.path = "/api/v1/surveys"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "page[number]", value: "1"),
+            URLQueryItem(name: "page[size]", value: "3")
+        ]
+        guard let url = urlComponents.url else {
+            completion(.failure(.apiError("- getSurveyList method. Error creating url")))
+            return
+        }
+        
+        let keychain = KeychainManager()
+        guard let token = keychain.getToken() else {
+            completion(.failure(.apiError("Error obtaining token from Keychain")))
+            return
+        }
+        
+        
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = [
+            "Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"
+        ]
+        
+        network.fetchData(with: request) { data, response, error in
+            guard let data = data else {
+                completion(.failure(.apiError(error ?? "Error Unknow - getSurveyList response: \(String(describing: response as? HTTPURLResponse))")))
                 return
             }
             
-            completion(.success(loginResponseData.data.data))
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let surveyListResponseData = try decoder.decode(SurveyListResponseData.self, from: data)
+                
+                completion(.success(surveyListResponseData.data))
+            } catch let decoderError {
+                completion(.failure(.apiError("Error decoding SurveyListResponseData: \(decoderError)")))
+            }
+            
         }
         
     }

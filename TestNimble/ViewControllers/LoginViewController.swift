@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
     
     //MARK: Variables
     private var apiService = APINimbleService()
+    let keychainManager = KeychainManager()
     
     //MARK: - Lifecycle
 
@@ -33,6 +34,11 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.setupTextFields()
         self.setupViews()
+        
+        guard let savedToken = keychainManager.getToken() else {
+            return
+        }
+        self.performSegue(withIdentifier: "toMainSegue", sender: nil)
     }
     
     //MARK: - Setup
@@ -50,6 +56,25 @@ class LoginViewController: UIViewController {
         self.passwordTextField.placeholder = "Password"
     }
     
+    //MARK: - Helper
+    private func successLoginFlow(with loginResponse: LoginResponse) {
+        
+        let token = loginResponse.attributes.accessToken
+        
+        guard let savedToken = keychainManager.getToken() else {
+            // Save token
+            guard keychainManager.saveToken(token) else {
+                print("Error saving auth token: \(token)")
+                return
+            }
+            
+            self.performSegue(withIdentifier: "toMainSegue", sender: nil)
+            return
+        }
+        // Token already saved
+        self.performSegue(withIdentifier: "toMainSegue", sender: nil)
+    }
+    
     //MARK: - Actions
     @IBAction func loginButtonAction(_ button: UIButton) {
         
@@ -60,15 +85,17 @@ class LoginViewController: UIViewController {
         print("email: \(email) and password \(password)")
         
         self.loadingView.startLoading()
-        self.apiService.login(with: email, password: password) { [loadingView = self.loadingView] result in
+        self.apiService.login(with: email, password: password) { [loadingView = self.loadingView, weak self] result in
             DispatchQueue.main.async {
                 loadingView?.stopLoading()
                 switch result {
                 case .success(let loginResponse):
-                    print("Success: \(loginResponse)")
-                    self.performSegue(withIdentifier: "toMainSegue", sender: nil)
+                    self?.successLoginFlow(with: loginResponse)
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    switch error {
+                    case .apiError(let errorString):
+                        print("Error: \(errorString)")
+                    }
                 }
             }
             

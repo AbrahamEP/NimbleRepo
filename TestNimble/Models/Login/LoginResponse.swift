@@ -30,11 +30,11 @@ enum TokenType: String, Codable {
 }
 
 struct LoginResponseData: Codable {
-    var data: DataResponseModel<LoginResponse>
+    var data: LoginResponse
 }
 
 struct LoginResponse: Codable {
-    var id: Int
+    var id: String
     var type: ServiceType
     var attributes: LoginResponseAttributes
 }
@@ -44,7 +44,7 @@ struct LoginResponseAttributes: Codable {
     var tokenType: TokenType
     var expiresIn: Int
     var refreshToken: String
-    var createdAtTimestamp: Double
+    var createdAt: Double
     var createAtDate: Date
     
     init(from decoder: Decoder) throws {
@@ -53,15 +53,15 @@ struct LoginResponseAttributes: Codable {
         self.tokenType = try container.decode(TokenType.self, forKey: .tokenType)
         self.expiresIn = try container.decode(Int.self, forKey: .expiresIn)
         self.refreshToken = try container.decode(String.self, forKey: .refreshToken)
-        self.createdAtTimestamp = try container.decode(Double.self, forKey: .createdAtTimestamp)
+        self.createdAt = try container.decode(Double.self, forKey: .createdAt)
         
         // Check if the timestamp is in seconds or milliseconds
-        if createdAtTimestamp > 9999999999 {
+        if createdAt > 9999999999 {
             // If the timestamp is in milliseconds, convert it to seconds
-            createAtDate = Date(timeIntervalSince1970: createdAtTimestamp / 1000)
+            createAtDate = Date(timeIntervalSince1970: createdAt / 1000)
         } else {
             // If the timestamp is in seconds, convert it directly
-            createAtDate = Date(timeIntervalSince1970: createdAtTimestamp)
+            createAtDate = Date(timeIntervalSince1970: createdAt)
         }
     }
 }

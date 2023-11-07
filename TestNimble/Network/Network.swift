@@ -15,7 +15,7 @@ class Network {
     
     //MARK: - Variables
     private let baseUrlString = "https://survey-api.nimblehq.co/"
-    private let debugPrint = true
+    var debugPrint = false
     
     var urlComponents: URLComponents {
         var components = URLComponents()
@@ -38,7 +38,7 @@ class Network {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = bodyData
-        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if debugPrint {
             print("Request httpBody: \(String(describing: request.httpBody?.prettyPrintedJSONString))")
@@ -79,7 +79,7 @@ class Network {
     }
 
     
-    func fetchData(with url: URL, completion: @escaping (Data?, URLResponse?, String?) -> Void) {
+    func fetchData(with url: URLRequest, completion: @escaping (Data?, URLResponse?, String?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { [debugPrint = self.debugPrint] data, response, error in
             if let error = error {
                 let errorString = String(describing: error)

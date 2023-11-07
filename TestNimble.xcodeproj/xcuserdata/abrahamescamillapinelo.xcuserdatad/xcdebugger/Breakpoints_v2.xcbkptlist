@@ -34,6 +34,165 @@
             endingLineNumber = "43"
             landmarkName = "login(with:password:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B731082-8727-4EB0-88D4-DCB95DE4A5A2 - 5d1a47127ff92d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in TestNimble.APINimbleService.login(with: Swift.String, password: Swift.String, completion: (Swift.Result&lt;TestNimble.LoginResponse, TestNimble.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/Network/APINimbleService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "2B731082-8727-4EB0-88D4-DCB95DE4A5A2 - 5d1a47127ff92d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in TestNimble.APINimbleService.login(with: Swift.String, password: Swift.String, completion: (Swift.Result&lt;TestNimble.LoginResponse, TestNimble.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/Network/APINimbleService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "516">
+               </Location>
+               <Location
+                  uuid = "2B731082-8727-4EB0-88D4-DCB95DE4A5A2 - 5d1a47127ff92d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in TestNimble.APINimbleService.login(with: Swift.String, password: Swift.String, completion: (Swift.Result&lt;TestNimble.LoginResponse, TestNimble.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/Network/APINimbleService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "424">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "702CBA85-19D5-4DF3-BDB5-9D67DC351629"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestNimble/Network/Network.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "postData(with:bodyData:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "702CBA85-19D5-4DF3-BDB5-9D67DC351629 - 525567aeaaff1c04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestNimble.Network.postData(with: Foundation.URL, bodyData: Foundation.Data, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/Network/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "732">
+               </Location>
+               <Location
+                  uuid = "702CBA85-19D5-4DF3-BDB5-9D67DC351629 - 525567aeaaff1c04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestNimble.Network.postData(with: Foundation.URL, bodyData: Foundation.Data, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/Network/Network.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "640">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34420040-CE1F-4BB9-B30F-D286B2D020C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestNimble/Network/Network.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "postData(with:bodyData:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D8B0F58-3C91-4393-AB03-ABD5D078089F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestNimble/ViewControllers/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "successLoginFlow(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0D8B0F58-3C91-4393-AB03-ABD5D078089F - c64b50c58982e3c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestNimble.LoginViewController.successLoginFlow(with: TestNimble.LoginResponse) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/ViewControllers/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "0D8B0F58-3C91-4393-AB03-ABD5D078089F - c64b50c58982fcd8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestNimble.LoginViewController.successLoginFlow(with: TestNimble.LoginResponse) -&gt; ()"
+                  moduleName = "TestNimble"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abrahamescamillapinelo/Documents/Companies%20test/TestNimble/TestNimble/ViewControllers/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

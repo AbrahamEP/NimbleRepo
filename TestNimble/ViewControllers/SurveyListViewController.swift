@@ -8,11 +8,32 @@
 import UIKit
 
 class SurveyListViewController: UIViewController {
-
+    
+    private let apiService = APINimbleService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let keychainManager = KeychainManager()
+        
+        guard let token = keychainManager.getToken() else {
+            print("No token")
+            return
+        }
+        print("Auth token: \(token)")
+        
+        self.apiService.getSurveyList { result in
+            switch result {
+            case .success(let surveyListResponse):
+                print("Success \(surveyListResponse)")
+                
+            case .failure(let error):
+                switch error {
+                case .apiError(let message):
+                    print("Error fetching SurveyList: \(message)")
+                }
+            }
+        }
     }
     
 
