@@ -93,8 +93,8 @@
             filePath = "TestNimble/Network/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "postData(with:bodyData:completion:)"
             landmarkType = "7">
             <Locations>
@@ -141,8 +141,8 @@
             filePath = "TestNimble/Network/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "postData(with:bodyData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -193,6 +193,22 @@
                   offsetFromSymbolStart = "136">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89720113-C5CF-47AB-BDE9-6274B36AB2AF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestNimble/Views/SurveyPageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "setupLabels()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

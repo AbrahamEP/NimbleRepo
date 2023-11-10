@@ -25,15 +25,6 @@ class Network {
         return components
     }
     
-    
-
-//    func fetchData(with url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-//        // ...
-//        completion(.success(data))
-//        // or
-//        completion(.failure(.apiError("Error fetching data: \(errorString)")))
-//    }
-    
     func postData(with url: URL, bodyData: Data, completion: @escaping (Data?, URLResponse?, String?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -45,7 +36,6 @@ class Network {
         }
         
         let task = URLSession.shared.dataTask(with: request) { [debugPrint = self.debugPrint] data, response, error in
-            // Handle response, error, and completion similar to fetchData
             if let error = error {
                 let errorString = String(describing: error)
                 completion(nil, nil, "Error fetching data: \(errorString)")

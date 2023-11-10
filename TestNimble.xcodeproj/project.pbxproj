@@ -18,6 +18,9 @@
 		A317560B2AF85D15000F1D9F /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317560A2AF85D15000F1D9F /* LoginResponse.swift */; };
 		A3C6696E2AF9F9CA00B0AFCB /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C6696D2AF9F9CA00B0AFCB /* KeychainManager.swift */; };
 		A3C669712AFA0C5200B0AFCB /* SurveyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C669702AFA0C5200B0AFCB /* SurveyListResponse.swift */; };
+		A3CA598F2AFC7BA400681B00 /* SurveyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA598E2AFC7BA400681B00 /* SurveyPageView.swift */; };
+		A3CA59922AFCA0F700681B00 /* NeuzeitSLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A3CA59912AFCA0F700681B00 /* NeuzeitSLTStd-Book.otf */; };
+		A3CA59942AFCA32500681B00 /* NeuzeitSLTStd-BookHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A3CA59932AFCA32500681B00 /* NeuzeitSLTStd-BookHeavy.otf */; };
 		A3F2FCD22AF86068000E875B /* Data+PrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F2FCD12AF86068000E875B /* Data+PrettyPrint.swift */; };
 		A3F2FCD42AF866BA000E875B /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F2FCD32AF866BA000E875B /* LoginRequest.swift */; };
 		A3F2FCD62AF86785000E875B /* DataResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F2FCD52AF86785000E875B /* DataResponseModel.swift */; };
@@ -39,6 +42,9 @@
 		A317560A2AF85D15000F1D9F /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		A3C6696D2AF9F9CA00B0AFCB /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		A3C669702AFA0C5200B0AFCB /* SurveyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyListResponse.swift; sourceTree = "<group>"; };
+		A3CA598E2AFC7BA400681B00 /* SurveyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPageView.swift; sourceTree = "<group>"; };
+		A3CA59912AFCA0F700681B00 /* NeuzeitSLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-Book.otf"; sourceTree = "<group>"; };
+		A3CA59932AFCA32500681B00 /* NeuzeitSLTStd-BookHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-BookHeavy.otf"; sourceTree = "<group>"; };
 		A3F2FCD12AF86068000E875B /* Data+PrettyPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+PrettyPrint.swift"; sourceTree = "<group>"; };
 		A3F2FCD32AF866BA000E875B /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		A3F2FCD52AF86785000E875B /* DataResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponseModel.swift; sourceTree = "<group>"; };
@@ -76,6 +82,7 @@
 		A31755EE2AF6F08A000F1D9F /* TestNimble */ = {
 			isa = PBXGroup;
 			children = (
+				A3CA59902AFCA0BC00681B00 /* Fonts */,
 				A3C6696C2AF9F9B700B0AFCB /* Clases */,
 				A3F2FCDA2AF88970000E875B /* Views */,
 				A31755EF2AF6F08A000F1D9F /* AppDelegate.swift */,
@@ -136,6 +143,15 @@
 			path = Surveys;
 			sourceTree = "<group>";
 		};
+		A3CA59902AFCA0BC00681B00 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A3CA59932AFCA32500681B00 /* NeuzeitSLTStd-BookHeavy.otf */,
+				A3CA59912AFCA0F700681B00 /* NeuzeitSLTStd-Book.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A3F2FCD02AF86052000E875B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				A3F2FCDB2AF88988000E875B /* LoadingView.swift */,
+				A3CA598E2AFC7BA400681B00 /* SurveyPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,9 +236,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3CA59942AFCA32500681B00 /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
 				A31755FC2AF6F08C000F1D9F /* LaunchScreen.storyboard in Resources */,
 				A31755F92AF6F08C000F1D9F /* Assets.xcassets in Resources */,
 				A31755F72AF6F08A000F1D9F /* Main.storyboard in Resources */,
+				A3CA59922AFCA0F700681B00 /* NeuzeitSLTStd-Book.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +260,7 @@
 				A317560B2AF85D15000F1D9F /* LoginResponse.swift in Sources */,
 				A3F2FCD92AF876E2000E875B /* APINimbleService.swift in Sources */,
 				A3C6696E2AF9F9CA00B0AFCB /* KeychainManager.swift in Sources */,
+				A3CA598F2AFC7BA400681B00 /* SurveyPageView.swift in Sources */,
 				A31755F02AF6F08A000F1D9F /* AppDelegate.swift in Sources */,
 				A31756042AF76B25000F1D9F /* SurveyListViewController.swift in Sources */,
 				A31755F22AF6F08A000F1D9F /* SceneDelegate.swift in Sources */,
