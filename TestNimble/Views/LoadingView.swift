@@ -19,17 +19,22 @@ class LoadingView: UIView {
             // Fallback on earlier versions
             activityIndicator = UIActivityIndicatorView()
         }
-        activityIndicator.startAnimating()
-
         super.init(frame: frame)
-
-        addSubview(activityIndicator)
-        activityIndicator.center = center
-        activityIndicator.isHidden = true
+        
+        self.setupUI()
+        
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        activityIndicator.color = .blue
+        
+        addSubview(activityIndicator)
+        activityIndicator.center = center
+        activityIndicator.isHidden = true
     }
 
     func startLoading() {

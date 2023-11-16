@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 class APINimbleService {
     private var network: Network = Network()
@@ -27,7 +28,6 @@ class APINimbleService {
             completion(.failure(.apiError("Error with url")))
             return
         }
-        print("URL Request url:\(url)")
         
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -36,7 +36,9 @@ class APINimbleService {
             return
         }
         
-        print("Request Data: \(String(describing: data.prettyPrintedJSONString))")
+        if self.network.debugPrint {
+            print("Request Data: \(String(describing: data.prettyPrintedJSONString))")
+        }
         
         self.network.postData(with: url, bodyData: data) { data, response, errorString in
             
@@ -57,7 +59,7 @@ class APINimbleService {
         }
     }
     
-    func getSurveyList(completion: @escaping (Result<[SurveyListResponse], NetworkError>) -> Void) {
+    func getSurveyList(completion: @escaping (Result<[SurveyListResponse], NetworkError>, _ images: [UIImage]) -> Void) {
         var urlComponents = network.urlComponents
         urlComponents.path = "/api/v1/surveys"
         urlComponents.queryItems = [
@@ -65,13 +67,13 @@ class APINimbleService {
             URLQueryItem(name: "page[size]", value: "3")
         ]
         guard let url = urlComponents.url else {
-            completion(.failure(.apiError("- getSurveyList method. Error creating url")))
+            completion(.failure(.apiError("- getSurveyList method. Error creating url")), [])
             return
         }
         
         let keychain = KeychainManager()
         guard let token = keychain.getToken() else {
-            completion(.failure(.apiError("Error obtaining token from Keychain")))
+            completion(.failure(.apiError("Error obtaining token from Keychain")), [])
             return
         }
         
@@ -84,7 +86,7 @@ class APINimbleService {
         
         network.fetchData(with: request) { data, response, error in
             guard let data = data else {
-                completion(.failure(.apiError(error ?? "Error Unknow - getSurveyList response: \(String(describing: response as? HTTPURLResponse))")))
+                completion(.failure(.apiError(error ?? "Error Unknow - getSurveyList response: \(String(describing: response as? HTTPURLResponse))")), [])
                 return
             }
             
@@ -92,13 +94,86 @@ class APINimbleService {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let surveyListResponseData = try decoder.decode(SurveyListResponseData.self, from: data)
+                let surveys = surveyListResponseData.data
                 
-                completion(.success(surveyListResponseData.data))
+                guard !surveys.isEmpty else {
+                    completion(.success(surveys), [])
+                    return
+                }
+                
+                var images: [UIImage] = []
+                let downloader = ImageDownloader()
+                let dispatchGroup = DispatchGroup()
+                
+                for item in surveys {
+                    dispatchGroup.enter()
+                    
+                    guard let coverImageUrlString = item.attributes.coverImageUrl else {
+                        // No image URL founded.
+                        dispatchGroup.leave()
+                        continue
+                    }
+                    
+                    downloader.downloadImage(from: URL(string: coverImageUrlString)!) { image in
+                        
+                        guard let image = image else { return }
+                        images.append(image)
+                        
+                        dispatchGroup.leave()
+                    }
+                } //END for in
+                
+                dispatchGroup.notify(queue: .main) {
+                    // All images downloaded, notify the ViewController
+                    completion(.success(surveyListResponseData.data), images)
+                }
             } catch let decoderError {
-                completion(.failure(.apiError("Error decoding SurveyListResponseData: \(decoderError)")))
+                completion(.failure(.apiError("Error decoding SurveyListResponseData: \(decoderError)")), [])
             }
             
         }
+    }
+    
+    func logout(completion: @escaping (Result<HTTPURLResponse, NetworkError>) -> Void) {
         
+        guard let token = KeychainManager().getToken() else {
+            return
+        }
+        let logoutRequest = LogoutRequest(token: token,
+                                          clientId: "6GbE8dhoz519l2N_F99StqoOs6Tcmm1rXgda4q__rIw",
+                                          clientSecret: "_ayfIm7BeUAhx2W1OUqi20fwO3uNxfo1QstyKlFCgHw")
+        
+        var urlComponents = network.urlComponents
+        urlComponents.path = "/api/v1/oauth/revoke"
+        
+        guard let url = urlComponents.url else {
+            completion(.failure(.apiError("Error with url")))
+            return
+        }
+        
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        var encodedDataRequest: Data?
+        do {
+            encodedDataRequest = try encoder.encode(logoutRequest)
+            
+        } catch let error {
+            completion(.failure(.apiError("Error encoding data: \(error)")))
+        }
+        
+        guard let encodedDataRequest = encodedDataRequest else {
+            completion(.failure(.apiError("Error encoding data")))
+            return
+        }
+        
+        self.network.postData(with: url, bodyData: encodedDataRequest) { data, response, errorString in
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(.apiError(errorString ?? "Unknow")))
+                return
+            }
+            completion(.success(response))
+        }
+            
     }
 }

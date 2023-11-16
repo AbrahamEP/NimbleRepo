@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         self.setupTextFields()
         self.setupViews()
         
-        guard let savedToken = keychainManager.getToken() else {
+        guard let _ = keychainManager.getToken() else {
             return
         }
         self.performSegue(withIdentifier: "toMainSegue", sender: nil)
@@ -52,8 +52,11 @@ class LoginViewController: UIViewController {
     
     private func setupTextFields() {
         self.emailTextField.placeholder = "Email"
+        self.emailTextField.keyboardType = .emailAddress
+        self.emailTextField.textContentType = .emailAddress
         
         self.passwordTextField.placeholder = "Password"
+        self.passwordTextField.textContentType = .password
     }
     
     //MARK: - Helper
@@ -61,7 +64,7 @@ class LoginViewController: UIViewController {
         
         let token = loginResponse.attributes.accessToken
         
-        guard let savedToken = keychainManager.getToken() else {
+        guard let _ = keychainManager.getToken() else {
             // Save token
             guard keychainManager.saveToken(token) else {
                 print("Error saving auth token: \(token)")
@@ -73,6 +76,12 @@ class LoginViewController: UIViewController {
         }
         // Token already saved
         self.performSegue(withIdentifier: "toMainSegue", sender: nil)
+    }
+    
+    private func navigateToMain() {
+        if let mainViewController = storyboard?.instantiateViewController(withIdentifier: "MainViewNavigationController") as? UINavigationController {
+            present(mainViewController, animated: true, completion: nil)
+        }
     }
     
     //MARK: - Actions

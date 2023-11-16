@@ -11,6 +11,7 @@ protocol SurveyPageViewDelegate: AnyObject {
     func didPressStartButton()
     func didSwipeToRightAction(sender: UISwipeGestureRecognizer)
     func didSwipeToLeftAction(sender: UISwipeGestureRecognizer)
+    func didPressProfileImageView(sender: UITapGestureRecognizer)
 }
 
 class SurveyPageView: UIView {
@@ -20,14 +21,18 @@ class SurveyPageView: UIView {
     var profileImageView: UIImageView!
     var surveyTitleLabel: UILabel!
     var surveyDescriptionLabel: UILabel!
-    var startSurveyButton: UIButton!
     var dateLabel: UILabel!
     var dayLabel:UILabel!
-    
+    var pageControl: UIPageControl!
     var startImageView: UIImageView!
     
     //MARK: - Variables
     weak var delegate: SurveyPageViewDelegate?
+    var viewModel = SurveyPageViewVM() {
+        didSet {
+            updateUI()
+        }
+    }
     
     //MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -45,7 +50,21 @@ class SurveyPageView: UIView {
         setupButton()
         setupImageViews()
         setupLabels()
-        self.setupSwipesGestures()
+        setupSwipesGestures()
+        setupPageControl()
+    }
+    
+    func updateUI() {
+        UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
+            guard let self = self else { return }
+            self.backgroundImageView.image = viewModel.currentImage?.withRenderingMode(.alwaysOriginal)
+            self.surveyTitleLabel.text = viewModel.currentItem?.attributes.title
+            self.surveyDescriptionLabel.text = viewModel.currentItem?.attributes.description
+            self.dateLabel.text = viewModel.mediumFormattedDate
+            self.dayLabel.text = viewModel.shortFormattedDate
+            self.pageControl.currentPage = viewModel.currentIndex
+            self.pageControl.numberOfPages = viewModel.count
+        }
     }
     
     private func setupSwipesGestures() {
@@ -58,12 +77,26 @@ class SurveyPageView: UIView {
         self.addGestureRecognizer(swipeLeftGesture)
     }
     
+    //MARK: - Setup Page Control
+    private func setupPageControl() {
+        pageControl = UIPageControl()
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.numberOfPages = 0
+        pageControl.backgroundColor = .gray.withAlphaComponent(0.5)
+        self.addSubview(pageControl)
+        
+        pageControl.bottomAnchor.constraint(equalTo: surveyTitleLabel.topAnchor, constant: -10).isActive = true
+        pageControl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        
+    }
+    
     // MARK: - Image Views Setup
     private func setupImageViews() {
         backgroundImageView = UIImageView(image: UIImage(named: "SurveyBackground"))
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        backgroundImageView.backgroundColor = .lightGray
         backgroundImageView.contentMode = .scaleAspectFill
+        
         self.addSubview(backgroundImageView)
         
         backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -71,13 +104,18 @@ class SurveyPageView: UIView {
         backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        
-        
         //Profile image view
         profileImageView = UIImageView(image: UIImage(named: "ProfilePicture"))
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.backgroundColor = .clear
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTappedAction))
+        tapGesture.numberOfTapsRequired = 1
+        
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGesture)
+        
         self.addSubview(profileImageView)
         
         profileImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
@@ -173,9 +211,17 @@ class SurveyPageView: UIView {
     
     @objc func swipeLeftAction(sender: UISwipeGestureRecognizer) {
         delegate?.didSwipeToLeftAction(sender: sender)
+        viewModel.nextItem()
+        updateUI()
     }
     
     @objc func swipeRightAction(sender: UISwipeGestureRecognizer) {
         delegate?.didSwipeToRightAction(sender: sender)
+        viewModel.previousItem()
+        updateUI()
+    }
+    
+    @objc func profileImageViewTappedAction(sender: UITapGestureRecognizer) {
+        delegate?.didPressProfileImageView(sender: sender)
     }
 }

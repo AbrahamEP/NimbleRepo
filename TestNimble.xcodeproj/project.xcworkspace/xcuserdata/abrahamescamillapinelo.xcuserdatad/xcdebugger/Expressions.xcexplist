@@ -3,12 +3,40 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SurveyPageViewVM.downloadAllItems():SurveyPageViewVM.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.images">
+            </PersistentString>
+            <PersistentString
+               value = "self.surveys">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SurveyPageView.updateUI():SurveyPageView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.viewModel">
+            </PersistentString>
+            <PersistentString
+               value = "self.viewModel.currentImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SurveyListViewController.viewDidLoad():SurveyListViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "SurveyPageView.setupLabels():SurveyPageView.swift">
          <PersistentStrings>
             <PersistentString
                value = "surveyDescriptionLabel.font">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SurveyListViewController.didFinishDownloadingImages():SurveyListViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

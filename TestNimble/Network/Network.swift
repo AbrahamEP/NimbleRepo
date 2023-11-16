@@ -15,7 +15,7 @@ class Network {
     
     //MARK: - Variables
     private let baseUrlString = "https://survey-api.nimblehq.co/"
-    var debugPrint = false
+    var debugPrint = true
     
     var urlComponents: URLComponents {
         var components = URLComponents()
@@ -38,7 +38,7 @@ class Network {
         let task = URLSession.shared.dataTask(with: request) { [debugPrint = self.debugPrint] data, response, error in
             if let error = error {
                 let errorString = String(describing: error)
-                completion(nil, nil, "Error fetching data: \(errorString)")
+                completion(nil, response, "Error fetching data: \(errorString)")
                 return
             }
             
@@ -46,7 +46,7 @@ class Network {
                 if debugPrint {
                     print("Error with the response: \(String(describing: response))")
                 }
-                completion(nil, nil, "Error with the response: \(String(describing: response))")
+                completion(nil, response, "Error with the response: \(String(describing: response))")
                 return
             }
             
@@ -55,7 +55,7 @@ class Network {
             }
             
             guard let data = data else {
-                completion(nil, nil, "Error obtaining data: \(String(describing: response))")
+                completion(nil, httpResponse, "Error obtaining data: \(String(describing: response))")
                 return
             }
             if debugPrint {

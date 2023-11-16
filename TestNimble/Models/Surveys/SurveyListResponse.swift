@@ -23,7 +23,7 @@ struct SurveyListResponse: Codable {
         var thankEmailAboveThreshold: String?
         var thankEmailBelowThreshold: String?
         var isActive: Bool
-        var coverImageURL: String?
+        var coverImageUrl: String?
         var createdAt: String
         var activeAt: String
         var inactiveAt: String?
