@@ -32,6 +32,8 @@ Once NimbleApp is installed, you can launch it on your iOS device. The app will 
 
 The app is gonna start in the Login screen, here you need to input your email and password to get access to the app. If you succeed you get to the main screen, is a survey page visor with responses to left and right swipes gestures to navigate the different surveys. Pressing the start survey button only gets you to an empty view controller.
 
+If you press the profile image you are gonna see an alert to logout.
+
 ## License
 
 NimbleApp is licensed under the MIT License. You can find the full license text in the LICENSE file in the root directory of this repository.
