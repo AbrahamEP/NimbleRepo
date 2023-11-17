@@ -88,7 +88,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonAction(_ button: UIButton) {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Must do all fields")
+            self.presentAlertController(text: "Please fill all the fields", title: "Missing info") {
+                
+            }
             return
         }
         print("email: \(email) and password \(password)")
@@ -103,6 +105,9 @@ class LoginViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case .apiError(let errorString):
+                        self?.presentAlertController(text: "Error", title: "Error login", okAction: {
+                            
+                        })
                         print("Error: \(errorString)")
                     }
                 }
